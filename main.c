@@ -2,6 +2,6 @@
 #include "module/interface.h"
 
 int main(void){
-    displayMenu();
+    interface_display();
     return 0;
 }

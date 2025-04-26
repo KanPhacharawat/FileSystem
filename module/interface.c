@@ -1,5 +1,5 @@
 #include <stdio.h>
 
-void displayMenu(){
+void interface_display(){
     printf("File System\n");
 }

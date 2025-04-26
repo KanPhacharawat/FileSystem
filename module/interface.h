@@ -1,1 +1,1 @@
-void displayMenu();
+void interface_display();
