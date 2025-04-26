@@ -9,3 +9,5 @@ typedef struct node{
 } node;
 
 #endif
+
+void struct_init(node* head);
