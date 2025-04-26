@@ -1,0 +1,1 @@
+void move(node* folder, node* file, node* newF);
