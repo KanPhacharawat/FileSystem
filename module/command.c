@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include "command.h"
+#include "create.h"
 
 int command_option(){
     int n;

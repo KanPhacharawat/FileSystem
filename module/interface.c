@@ -10,5 +10,5 @@ void interface_display(){
 }
 
 void interface_end(){
-    printf("Than you for using File System.\n");
+    printf("Thank you for using File System.\n");
 }
