@@ -11,3 +11,5 @@ typedef struct node{
 #endif
 
 void struct_init(node* head);
+int findPath(node* current, node* target, char* path);
+void struct_buildPath(node* root, node* target, char* path);

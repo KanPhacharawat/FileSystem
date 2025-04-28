@@ -1,5 +1,6 @@
 #include <string.h>
 #include "struct.h"
+#include <stdio.h>
 
 void move(node* folder, node* file, node* newF) {
     if (folder == NULL || file == NULL || newF == NULL) return;

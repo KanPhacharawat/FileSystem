@@ -1,4 +1,5 @@
 #include "struct.h"
+#include <stdio.h>
 
 void delete(node* node){
     if(node == NULL) return;

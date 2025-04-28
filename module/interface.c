@@ -1,14 +1,36 @@
 #include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#include "command.h"
 
-void interface_display(){
-    printf("File System\n");
-    printf("[1] Create File/Folder\n");
-    printf("[2] Rename File/Folder\n");
-    printf("[3] Move File/Folder\n");
-    printf("[4] Delete File/Folder\n");
-    printf("[5] Exit\n");
+void interface_cleancomm(char* comm){
+    for(int i = 0; i < strlen(comm); i++){
+        comm[i] = tolower(comm[i]);
+    }
 }
 
-void interface_end(){
-    printf("Thank you for using File System.\n");
+int interface_input(char* path){
+    char comm[10];
+    printf("%s> ", path);
+    scanf("%s", comm);
+    interface_cleancomm(comm);
+    int r = command_read(comm);
+
+    if(r == 1) printf("Path\n----\n%s\n", path);
+    else if(r == 2){
+        printf("mkdir\tCreate folder.\n");
+        printf("touch\tCreate file.\n");
+        printf("mv\tRename directory.\n");
+        printf("rm\t Remove directory.\n");
+        printf("mv\tMove directory.\n");
+        printf("cp\tDuplicate directory.\n");
+        printf("nano\tEdit file.\n");
+        printf("cat\tView file content.\n");
+        printf("cd\tChange the current directory.\n");
+        printf("ls\tDisplay the current directory.\n");
+        printf("pwd\tDisplay the current directory.\n");
+        printf("home\tQuickly return to root directory.\n");
+        printf("exit\tTerminate program.\n");
+    }
+    return r;
 }
