@@ -2,6 +2,10 @@
 #include <ctype.h>
 #include <string.h>
 #include "command.h"
+#include "struct.h"
+#include "rename.h"
+#include "delete.h"
+#include "copy.h"
 
 void interface_cleancomm(char* comm){
     for(int i = 0; i < strlen(comm); i++){
@@ -9,7 +13,17 @@ void interface_cleancomm(char* comm){
     }
 }
 
-int interface_input(char* path){
+void interface_list(node* current){
+    if(current->child == NULL) return;
+
+    node* temp = current->child;
+    while (temp != NULL) {
+        printf("%s\n", temp->value);
+        temp = temp->next;
+    }
+}
+
+int interface_input(char* path, node** current){
     char comm[10];
     printf("%s> ", path);
     scanf("%s", comm);
@@ -31,6 +45,10 @@ int interface_input(char* path){
         printf("pwd\tDisplay the current directory.\n");
         printf("home\tQuickly return to root directory.\n");
         printf("exit\tTerminate program.\n");
-    }
+    }else if(r == 6) interface_list(*current);
+    else if(r == 7) command_navigate(current);
+    else if(r == 8) rename_main(*current);
+    else if(r == 9) delete_main(*current);
+    else if(r == 10) copy_main(*current);
     return r;
 }

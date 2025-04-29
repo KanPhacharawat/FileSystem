@@ -6,6 +6,7 @@ typedef struct node{
     int isFolder;
     struct node* child;
     struct node* next;
+    struct node* parent;
 } node;
 
 #endif

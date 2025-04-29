@@ -1,1 +1,1 @@
-void rename(node* file, char* name);
+void rename_main(node* file);

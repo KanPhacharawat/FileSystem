@@ -14,9 +14,11 @@ int main(void){
     printf("File System [Version 0.0.0.1]\n");
     while(1){
         struct_buildPath(&head, current, path);
-        int r = interface_input(path);
+        int r = interface_input(path, &current);
         if(r == -1) break;
         else if(r == 3) current = &head;
+        else if(r == 4) create_folder(current);
+        else if(r == 5) create_file(current);
     }
     return 0;
 }

@@ -1,6 +1,18 @@
 #include <string.h>
+#include <stdio.h>
 #include "struct.h"
 
-void rename(node* file, char* name){
-    strcpy(file->value, name);
+void rename_main(node* file) {
+    char dest[30], name[30];
+    scanf("%s %s", dest, name);
+
+    node* temp = file->child;
+    while (temp != NULL) {
+        if (strcmp(temp->value, dest) == 0) {
+            strcpy(temp->value, name);
+            printf("Renamed %s to %s\n", dest, name);
+            return;
+        }
+        temp = temp->next;
+    }
 }
