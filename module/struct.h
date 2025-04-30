@@ -4,6 +4,7 @@
 typedef struct node{
     char value[50];
     int isFolder;
+    char* content;
     struct node* child;
     struct node* next;
     struct node* parent;

@@ -40,12 +40,14 @@ int command_read(char* comm){
         return 6;
     }else if(strcmp(comm, "cd") == 0){
         return 7;
-    }else if(strcmp(comm, "mv") == 0){
+    }else if(strcmp(comm, "rn") == 0){
         return 8;
     }else if(strcmp(comm, "rm") == 0){
         return 9;
     }else if(strcmp(comm, "cp") == 0){
         return 10;
+    }else if(strcmp(comm, "mv") == 0){
+        return 11;
     }
     return 0;
 }

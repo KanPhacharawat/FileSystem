@@ -6,6 +6,7 @@
 #include "rename.h"
 #include "delete.h"
 #include "copy.h"
+#include "move.h"
 
 void interface_cleancomm(char* comm){
     for(int i = 0; i < strlen(comm); i++){
@@ -50,5 +51,6 @@ int interface_input(char* path, node** current){
     else if(r == 8) rename_main(*current);
     else if(r == 9) delete_main(*current);
     else if(r == 10) copy_main(*current);
+    else if(r == 11) move_main(*current);
     return r;
 }
