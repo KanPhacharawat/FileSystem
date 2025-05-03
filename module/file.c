@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <string.h>
+#include "struct.h"
+
+void file_view(node* current){
+    char name[30];
+    scanf("%s", name);
+
+    node* temp = current->child;
+    while (temp != NULL) {
+        if (!temp->isFolder && strcmp(temp->value, name) == 0) {
+            printf("%s\n",temp->content);
+            return;
+        }
+        temp = temp->next;
+    }
+
+    printf("%s not found.\n", name);
+}
+
+void file_edit(node* current) {
+    char name[30];
+    scanf("%s", name);
+    getchar();
+
+    node* temp = current->child;
+    while (temp != NULL) {
+        if (!temp->isFolder && strcmp(temp->value, name) == 0) {
+            printf("Enter new content for %s (end with a single line containing only `::end`)\n", name);
+
+            char buffer[1000] = "";
+            char line[256];
+            while (1) {
+                fgets(line, sizeof(line), stdin);
+                if (strcmp(line, "::end\n") == 0) break;
+                strcat(buffer, line);
+            }
+
+            strcpy(temp->content, buffer);
+            printf("%s updated.\n", name);
+            return;
+        }
+        temp = temp->next;
+    }
+
+    printf("%s not found.\n", name);
+}

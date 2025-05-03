@@ -4,10 +4,13 @@
 #include "module/interface.h"
 #include "module/command.h"
 #include "module/struct.h"
+#include "module/loader.h"
+#include "module/saver.h"
 
 int main(void){
     node head;
     struct_init(&head);
+    loader_main(&head);
     node* current = &head;
     char path[50];
 
@@ -20,5 +23,6 @@ int main(void){
         else if(r == 4) create_folder(current);
         else if(r == 5) create_file(current);
     }
+    saver_main(&head);
     return 0;
 }

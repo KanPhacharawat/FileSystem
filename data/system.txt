@@ -1,0 +1,7 @@
+FOLDER Home
+FOLDER C
+FOLDER projects
+FILE notes.txt
+FILE todo.txt
+FOLDER documents
+FILE resume.txt

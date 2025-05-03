@@ -48,6 +48,10 @@ int command_read(char* comm){
         return 10;
     }else if(strcmp(comm, "mv") == 0){
         return 11;
+    }else if(strcmp(comm, "cat") == 0){
+        return 12;
+    }else if(strcmp(comm, "nano") == 0){
+        return 13;
     }
     return 0;
 }

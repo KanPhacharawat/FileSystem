@@ -6,6 +6,8 @@ void struct_init(node* head){
     head->isFolder = 1;
     head->child = NULL;
     head->next = NULL;
+    head->content = NULL;
+    head->parent = NULL;
 }
 
 int findPath(node* current, node* target, char* path) {
