@@ -3,6 +3,7 @@
 #include <string.h>
 #include "struct.h"
 
+// Create folders/files along a given path
 void create_node_from_path(node* root, const char* type, const char* path) {
     char pathCopy[256];
     strcpy(pathCopy, path);
@@ -13,6 +14,7 @@ void create_node_from_path(node* root, const char* type, const char* path) {
         node* temp = current->child;
         int found = 0;
 
+        // Search for existing node
         while (temp) {
             if (strcmp(temp->value, token) == 0) {
                 current = temp;
@@ -22,6 +24,7 @@ void create_node_from_path(node* root, const char* type, const char* path) {
             temp = temp->next;
         }
 
+        // Create node if not found
         if (!found) {
             node* newNode = malloc(sizeof(node));
             strcpy(newNode->value, token);
@@ -44,9 +47,12 @@ void create_node_from_path(node* root, const char* type, const char* path) {
 
         token = strtok(NULL, "/");
     }
+
+    // Mark node as file if type is "FILE"
     current->isFolder = (strcmp(type, "FOLDER") == 0) ? 1 : 0;
 }
 
+// Load folder/file structure from system.txt
 void load_filesystem(node* root) {
     FILE* fp = fopen("./data/system.txt", "r");
     if (!fp){
@@ -61,6 +67,7 @@ void load_filesystem(node* root) {
     fclose(fp);
 }
 
+// Find a node by a given path
 node* loader_find_node_by_path(node* root, const char* path) {
     char pathCopy[256];
     strcpy(pathCopy, path);
@@ -85,6 +92,7 @@ node* loader_find_node_by_path(node* root, const char* path) {
     return current;
 }
 
+// Load file content from content.txt into nodes
 void load_file_content(node* root) {
     FILE* fp = fopen("./data/content.txt", "r");
     if (!fp) return;
