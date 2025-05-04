@@ -2,6 +2,7 @@
 #include <string.h>
 #include "struct.h"
 
+// Display file content by name
 void file_view(node* current){
     char name[30];
     scanf("%s", name);
@@ -18,6 +19,7 @@ void file_view(node* current){
     printf("%s not found.\n", name);
 }
 
+// Edit file content
 void file_edit(node* current) {
     char name[30];
     scanf("%s", name);
