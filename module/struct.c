@@ -1,6 +1,6 @@
 #include "struct.h"
 #include <string.h>
-
+//default values representing the root folder "Home"
 void struct_init(node* head){
     strcpy(head->value, "Home");
     head->isFolder = 1;
@@ -9,7 +9,7 @@ void struct_init(node* head){
     head->content = NULL;
     head->parent = NULL;
 }
-
+// searches for the path from the current node to the target node
 int findPath(node* current, node* target, char* path) {
     if (current == NULL) return 0;
     strcat(path, current->value);
@@ -28,7 +28,7 @@ int findPath(node* current, node* target, char* path) {
     }
     return 0;
 }
-
+// Builds full path from the root to the target node
 void struct_buildPath(node* root, node* target, char* path) {
     path[0] = '\0';
     if (!findPath(root, target, path)) strcpy(path, "Node not found");
