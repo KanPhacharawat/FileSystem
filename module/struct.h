@@ -2,8 +2,8 @@
 #define STRUCT_H
 
 typedef struct node{
-    char value[50];
-    int isFolder;
+    char value[50]; // Name of file or folder
+    int isFolder; // 1 if folder, 0 if file
     char* content;
     struct node* child;
     struct node* next;
