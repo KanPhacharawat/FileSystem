@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+// Recursively delete a node and its children
 void delete_node(node* target) {
     if (target == NULL) return;
     delete_node(target->child);
@@ -10,6 +11,7 @@ void delete_node(node* target) {
     free(target);
 }
 
+// Delete a specific child node from the current node
 void delete_main(node* current) {
     char dest[30];
     scanf("%s", dest);
@@ -21,6 +23,7 @@ void delete_main(node* current) {
 
     while (temp != NULL) {
         if (strcmp(temp->value, dest) == 0) {
+            // Remove node from linked list
             if (prev == NULL) current->child = temp->next;
             else prev->next = temp->next;
 
