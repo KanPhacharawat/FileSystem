@@ -9,12 +9,14 @@
 #include "move.h"
 #include "file.h"
 
+// Convert command string to lowercase
 void interface_cleancomm(char* comm){
     for(int i = 0; i < strlen(comm); i++){
         comm[i] = tolower(comm[i]);
     }
 }
 
+// List contents
 void interface_list(node* current){
     if(current->child == NULL) return;
 
@@ -25,6 +27,7 @@ void interface_list(node* current){
     }
 }
 
+// Process a command and return its type
 int interface_input(char* path, node** current){
     char comm[10];
     printf("%s> ", path);
