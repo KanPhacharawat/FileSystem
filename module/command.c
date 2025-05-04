@@ -4,7 +4,8 @@
 
 void command_navigate(node** current) {
     char name[30];
-    scanf("%s", name);
+    scanf("%s", name); // Read the name of the folder to navigate to
+
 
     if (strcmp(name, "..") == 0) {
         if ((*current)->parent != NULL) {
@@ -22,7 +23,7 @@ void command_navigate(node** current) {
         temp = temp->next;
     }
 }
-
+// Return command code for a given command string
 int command_read(char* comm){
     if(strcmp(comm, "exit") == 0){
         return -1;
