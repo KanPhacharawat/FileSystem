@@ -3,6 +3,7 @@
 #include <string.h>
 #include "struct.h"
 
+// Create a folder under the current node
 void create_folder(node* current) {
     getchar();
     char name[100];
@@ -16,6 +17,7 @@ void create_folder(node* current) {
     newNode->next = NULL;
     newNode->parent = current;
 
+    // Insert new node at end of child list
     if (current->child == NULL) {
         current->child = newNode;
     } else {
@@ -29,6 +31,7 @@ void create_folder(node* current) {
     printf("Folder %s created.\n", name);
 }
 
+// Create a file under the current node
 void create_file(node* current) {
     getchar();
     char name[100];
@@ -41,7 +44,7 @@ void create_file(node* current) {
     newNode->child = NULL;
     newNode->next = NULL;
     newNode->parent = current;
-
+ // Insert new node at end of child list
     if (current->child == NULL) {
         current->child = newNode;
     } else {
