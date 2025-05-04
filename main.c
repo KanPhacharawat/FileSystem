@@ -7,6 +7,7 @@
 #include "module/loader.h"
 #include "module/saver.h"
 
+//initiate struct
 int main(void){
     node head;
     struct_init(&head);
@@ -15,6 +16,7 @@ int main(void){
     char path[50];
 
     printf("File System [Version 0.0.0.1]\n");
+    // Main loop for input and command execution
     while(1){
         struct_buildPath(&head, current, path);
         int r = interface_input(path, &current);
