@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdio.h>
 
+//  copy a node and its children
 node* copy_node(node* original) {
     if (original == NULL) return NULL;
 
@@ -13,7 +14,7 @@ node* copy_node(node* original) {
     copy->isFolder = original->isFolder;
     copy->parent = NULL;
     copy->child = copy_node(original->child);
-
+    // Set parent
     node* temp = copy->child;
     while (temp != NULL) {
         temp->parent = copy;
@@ -24,6 +25,7 @@ node* copy_node(node* original) {
     return copy;
 }
 
+// Copy a node under current with a new name
 void copy_main(node* current) {
     char src[30], dest[30];
     scanf("%s %s", src, dest);
