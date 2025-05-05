@@ -33,4 +33,5 @@ void delete_main(node* current) {
         prev = temp;
         temp = temp->next;
     }
+    printf("%s not exist.\n", dest);
 }

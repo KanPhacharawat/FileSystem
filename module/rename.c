@@ -16,4 +16,5 @@ void rename_main(node* file) {
         }
         temp = temp->next;
     }
+    printf("%s does not exist.\n", dest);
 }

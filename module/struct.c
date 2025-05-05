@@ -60,7 +60,10 @@ void hash_insert(hash_table* table, const char* key, node* value) {
     }
 
     hash_entry* new_entry = malloc(sizeof(hash_entry));
-    if (!new_entry) return;
+    if (!new_entry) {
+        printf("Can't create new entry\n");
+        return;
+    }
 
     strcpy(new_entry->key, key);
     new_entry->value = value;

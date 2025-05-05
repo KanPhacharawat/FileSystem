@@ -1,5 +1,5 @@
 FOLDER docs
 FILE docs/intro.txt
+FILE docs/tutorial.txt
 FOLDER images
 FILE images/logo.png
-FILE docs/tutorial.txt

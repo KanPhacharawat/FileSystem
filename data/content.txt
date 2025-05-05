@@ -2,11 +2,14 @@
 Welcome to the documentation!
 This file contains the introduction.
 ---END---
-:::images/logo.png
-(binary content placeholder)
----END---
+
 :::docs/tutorial.txt
 Tutorial Part 1:
 - Step 1: Do this
 - Step 2: Do that
 ---END---
+
+:::images/logo.png
+(binary content placeholder)
+---END---
+

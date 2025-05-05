@@ -24,8 +24,8 @@ int main(void){
         int r = interface_input(path, &current, table);
         if(r == -1) break;
         else if(r == 3) current = &head;
-        else if(r == 4) create_folder(current);
-        else if(r == 5) create_file(current);
+        else if(r == 4) create_folder(current, table);
+        else if(r == 5) create_file(current, table);
     }
     save_all(&head);
     return 0;

@@ -4,7 +4,7 @@
 #include "struct.h"
 
 // Create a folder under the current node
-void create_folder(node* current) {
+void create_folder(node* current, hash_table* table) {
     getchar();
     char name[100];
     fgets(name, sizeof(name), stdin);
@@ -16,6 +16,8 @@ void create_folder(node* current) {
     newNode->child = NULL;
     newNode->next = NULL;
     newNode->parent = current;
+
+    hash_insert(table, newNode->value, newNode);
 
     if (current->child == NULL) {
         current->child = newNode;
@@ -31,7 +33,7 @@ void create_folder(node* current) {
 }
 
 // Create a file under the current node
-void create_file(node* current) {
+void create_file(node* current, hash_table* table) {
     getchar();
     char name[100];
     fgets(name, sizeof(name), stdin);
@@ -45,6 +47,8 @@ void create_file(node* current) {
     newNode->parent = current;
     newNode->content = (char*)malloc(1);
     newNode->content[0] = '\0';
+
+    hash_insert(table, newNode->value, newNode);
 
     if (current->child == NULL) {
         current->child = newNode;
