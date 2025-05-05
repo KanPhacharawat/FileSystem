@@ -1,5 +1,8 @@
 #include "struct.h"
 #include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+
 //default values representing the root folder "Home"
 void struct_init(node* head){
     strcpy(head->value, "Home");
@@ -34,6 +37,7 @@ void struct_buildPath(node* root, node* target, char* path) {
     if (!findPath(root, target, path)) strcpy(path, "Node not found");
 }
 
+// Function to hash a string using djb2 algorithm
 unsigned int hash_func(const char* key) {
     unsigned long hash = 5381;
     int c;
@@ -42,6 +46,7 @@ unsigned int hash_func(const char* key) {
     return hash % HASH_SIZE;
 }
 
+// Function to insert new item into hash table
 void hash_insert(hash_table* table, const char* key, node* value) {
     unsigned int index = hash_func(key);
 
@@ -63,6 +68,7 @@ void hash_insert(hash_table* table, const char* key, node* value) {
     table->buckets[index] = new_entry;
 }
 
+// Function to search specific key in the hash table
 node* hash_search(hash_table* table, const char* key) {
     unsigned int index = hash_func(key);
     hash_entry* current = table->buckets[index];
@@ -75,8 +81,10 @@ node* hash_search(hash_table* table, const char* key) {
     return NULL;
 }
 
+// Function to create new hash table
 hash_table* create_table() {
     hash_table* table = (hash_table*)malloc(sizeof(hash_table));
+    if(table == NULL) return NULL;
     for (int i = 0; i < HASH_SIZE; i++)
         table->buckets[i] = NULL;
     return table;

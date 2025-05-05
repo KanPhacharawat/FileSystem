@@ -34,8 +34,6 @@ void move_main(node* current) {
 
     node* prev = NULL;
     node* src_node = current->child;
-
-    // Locate node
     while (src_node && strcmp(src_node->value, src_name) != 0) {
         prev = src_node;
         src_node = src_node->next;
@@ -49,19 +47,16 @@ void move_main(node* current) {
     if (prev == NULL) current->child = src_node->next;
     else prev->next = src_node->next;
 
-    // Find destination folder
     node* dest_parent = current;
     node* dest_node = find_node_by_path(&dest_parent, dest_path);
 
     if (!dest_node || !dest_node->isFolder) {
         printf("Destination not found.\n", dest_path);
-        // Revert if invalid
         src_node->next = current->child;
         current->child = src_node;
         return;
     }
 
-    // Attach node to destination
     src_node->next = dest_node->child;
     dest_node->child = src_node;
     src_node->parent = dest_node;

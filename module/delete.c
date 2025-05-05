@@ -23,7 +23,6 @@ void delete_main(node* current) {
 
     while (temp != NULL) {
         if (strcmp(temp->value, dest) == 0) {
-            // Remove node from linked list
             if (prev == NULL) current->child = temp->next;
             else prev->next = temp->next;
 

@@ -17,7 +17,6 @@ void create_folder(node* current) {
     newNode->next = NULL;
     newNode->parent = current;
 
-    // Insert new node at end of child list
     if (current->child == NULL) {
         current->child = newNode;
     } else {
@@ -44,7 +43,6 @@ void create_file(node* current) {
     newNode->child = NULL;
     newNode->next = NULL;
     newNode->parent = current;
- // Insert new node at end of child list
     newNode->content = (char*)malloc(1);
     newNode->content[0] = '\0';
 

@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "struct.h"
+
+
 // Saves content of a file node to the content file
 void save_file_content(node* current, FILE* content_file) {
     if (current->isFolder) return;
@@ -9,6 +11,7 @@ void save_file_content(node* current, FILE* content_file) {
     if (current->content != NULL) fprintf(content_file, "%s\n", current->content);
     fprintf(content_file, "---END---\n\n");
 }
+
 // Saves the structure of the filesystem to the structure file
 void save_filesystem_structure(node* current, FILE* structure_file) {
     if (current == NULL) return;
@@ -17,6 +20,7 @@ void save_filesystem_structure(node* current, FILE* structure_file) {
     if (current->child != NULL) save_filesystem_structure(current->child, structure_file);
     if (current->next != NULL) save_filesystem_structure(current->next, structure_file);
 }
+
 // Main function that handle saving the filesystem structure and file content
 void saver_main(node* root) {
     FILE* structure_file = fopen("./data/system.txt", "w");
@@ -30,7 +34,10 @@ void saver_main(node* root) {
     while (temp != NULL) {
         save_file_content(temp, content_file);
         temp = temp->next;
+    }
+}
 
+// Helper function to create a path
 void build_path(node* n, char* path) {
     if (n->parent == NULL || strcmp(n->parent->value, "Home") == 0) {
         strcpy(path, n->value);
@@ -41,6 +48,7 @@ void build_path(node* n, char* path) {
     sprintf(path, "%s/%s", temp, n->value);
 }
 
+// Sub function to save file system structure
 void save_structure(FILE* f, node* current) {
     if (!current) return;
 
@@ -54,10 +62,17 @@ void save_structure(FILE* f, node* current) {
     save_structure(f, current->next);
 }
 
+// Sub function to save file content
 void save_content(FILE* f, node* current) {
     if (!current) return;
 
     if (!current->isFolder && current->content[0] != '\0') {
+        size_t len = strlen(current->content);
+        while (len > 0 && (current->content[len - 1] == '\n' || current->content[len - 1] == '\r' || current->content[len - 1] == ' ')) {
+            current->content[len - 1] = '\0';
+            len--;
+        }
+
         char path[1024];
         build_path(current, path);
         fprintf(f, ":::%s\n", path);
@@ -69,6 +84,7 @@ void save_content(FILE* f, node* current) {
     save_content(f, current->next);
 }
 
+// Function to call for save content to .txt file
 void save_all(node* root) {
     FILE* f_struct = fopen("./data/system.txt", "w");
     FILE* f_content = fopen("./data/content.txt", "w");

@@ -27,3 +27,7 @@ typedef struct {
 void struct_init(node* head);
 int findPath(node* current, node* target, char* path);
 void struct_buildPath(node* root, node* target, char* path);
+unsigned int hash_func(const char* key);
+void hash_insert(hash_table* table, const char* key, node* value);
+node* hash_search(hash_table* table, const char* key);
+hash_table* create_table();

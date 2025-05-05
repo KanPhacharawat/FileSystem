@@ -1,6 +1,5 @@
-FOLDER C
-FOLDER C/projects
-FILE C/projects/notes.txt
-FILE C/projects/todo.txt
-FOLDER C/documents
-FILE C/documents/resume.txt
+FOLDER docs
+FILE docs/intro.txt
+FOLDER images
+FILE images/logo.png
+FILE docs/tutorial.txt

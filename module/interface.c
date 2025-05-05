@@ -8,6 +8,7 @@
 #include "copy.h"
 #include "move.h"
 #include "file.h"
+#include "search.h"
 
 // Convert command string to lowercase
 void interface_cleancomm(char* comm){
@@ -28,7 +29,7 @@ void interface_list(node* current){
 }
 
 // Process a command and return its type
-int interface_input(char* path, node** current){
+int interface_input(char* path, node** current, hash_table* table){
     char comm[10];
     printf("%s> ", path);
     scanf("%s", comm);
@@ -49,6 +50,7 @@ int interface_input(char* path, node** current){
         printf("ls\tDisplay the current directory.\n");
         printf("pwd\tDisplay the current directory.\n");
         printf("home\tQuickly return to root directory.\n");
+        printf("search\tFind specific file/folder by name.\n");
         printf("exit\tTerminate program.\n");
     }else if(r == 6) interface_list(*current);
     else if(r == 7) command_navigate(current);
@@ -59,6 +61,6 @@ int interface_input(char* path, node** current){
     else if(r == 12) file_view(*current);
     else if(r == 13) file_edit(*current);
     else if(r == 13) file_edit(*current);
-    else if(r == 14) file_edit(*current);
+    else if(r == 14) search_main(table,current);
     return r;
 }

@@ -53,12 +53,12 @@ void copy_main(node* current) {
             new_node->next = temp->next;
             temp->next = new_node;
             new_node->parent = current;
-            printf("Copied '%s' as '%s'\n", src, dest);
+            printf("Copied %s as %s\n", src, dest);
             return;
         }
         temp = temp->next;
     }
 
-    printf("Item '%s' not found.\n", src);
+    printf("Item %s not found.\n", src);
 }
 
