@@ -17,10 +17,10 @@ git clone https://github.com/KanPhacharawat/FileSystem.git
 cd FileSystem
 
 # Compile the program
-g++ -o filesystem main.c
+gcc main.c module/*.c -Imodule -o app
 
 # Run the program
-./filesystem
+./app
 ```
 
 # 🔄 Conclusion
