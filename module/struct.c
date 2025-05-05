@@ -33,3 +33,51 @@ void struct_buildPath(node* root, node* target, char* path) {
     path[0] = '\0';
     if (!findPath(root, target, path)) strcpy(path, "Node not found");
 }
+
+unsigned int hash_func(const char* key) {
+    unsigned long hash = 5381;
+    int c;
+    while ((c = *key++))
+        hash = ((hash << 5) + hash) + c;
+    return hash % HASH_SIZE;
+}
+
+void hash_insert(hash_table* table, const char* key, node* value) {
+    unsigned int index = hash_func(key);
+
+    hash_entry* current = table->buckets[index];
+    while (current) {
+        if (strcmp(current->key, key) == 0) {
+            current->value = value;
+            return;
+        }
+        current = current->next;
+    }
+
+    hash_entry* new_entry = malloc(sizeof(hash_entry));
+    if (!new_entry) return;
+
+    strcpy(new_entry->key, key);
+    new_entry->value = value;
+    new_entry->next = table->buckets[index];
+    table->buckets[index] = new_entry;
+}
+
+node* hash_search(hash_table* table, const char* key) {
+    unsigned int index = hash_func(key);
+    hash_entry* current = table->buckets[index];
+    while (current != NULL) {
+        if (strcmp(current->key, key) == 0) {
+            return current->value;
+        }
+        current = current->next;
+    }
+    return NULL;
+}
+
+hash_table* create_table() {
+    hash_table* table = (hash_table*)malloc(sizeof(hash_table));
+    for (int i = 0; i < HASH_SIZE; i++)
+        table->buckets[i] = NULL;
+    return table;
+}

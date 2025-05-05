@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "struct.h"
 
 // Display file content by name
@@ -30,7 +31,7 @@ void file_edit(node* current) {
         if (!temp->isFolder && strcmp(temp->value, name) == 0) {
             printf("Enter new content for %s (end with a single line containing only `::end`)\n", name);
 
-            char buffer[1000] = "";
+            char buffer[10000] = ""; 
             char line[256];
             while (1) {
                 fgets(line, sizeof(line), stdin);
@@ -38,7 +39,10 @@ void file_edit(node* current) {
                 strcat(buffer, line);
             }
 
+            free(temp->content); 
+            temp->content = (char*)malloc(strlen(buffer) + 1);
             strcpy(temp->content, buffer);
+
             printf("%s updated.\n", name);
             return;
         }

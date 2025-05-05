@@ -39,7 +39,7 @@ int interface_input(char* path, node** current){
     else if(r == 2){
         printf("mkdir\tCreate folder.\n");
         printf("touch\tCreate file.\n");
-        printf("mv\tRename directory.\n");
+        printf("rn\tRename directory.\n");
         printf("rm\t Remove directory.\n");
         printf("mv\tMove directory.\n");
         printf("cp\tDuplicate directory.\n");
@@ -58,5 +58,7 @@ int interface_input(char* path, node** current){
     else if(r == 11) move_main(*current);
     else if(r == 12) file_view(*current);
     else if(r == 13) file_edit(*current);
+    else if(r == 13) file_edit(*current);
+    else if(r == 14) file_edit(*current);
     return r;
 }

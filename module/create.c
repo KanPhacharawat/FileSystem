@@ -45,6 +45,9 @@ void create_file(node* current) {
     newNode->next = NULL;
     newNode->parent = current;
  // Insert new node at end of child list
+    newNode->content = (char*)malloc(1);
+    newNode->content[0] = '\0';
+
     if (current->child == NULL) {
         current->child = newNode;
     } else {

@@ -1,0 +1,34 @@
+:::C/projects/notes.txt
+AAAAAAA
+
+
+
+
+
+
+---END---
+
+:::C/projects/todo.txt
+- Fix bug
+- Finish this projects
+
+
+
+
+
+
+
+---END---
+
+:::C/documents/resume.txt
+Name: John Doe
+Experience: Learn nothing from CPE112 course.
+
+
+
+
+
+
+
+---END---
+

@@ -5,6 +5,7 @@
 
 // Create folders/files along a given path
 void create_node_from_path(node* root, const char* type, const char* path) {
+void create_node_from_path(node* root, const char* type, const char* path, hash_table* table) {
     char pathCopy[256];
     strcpy(pathCopy, path);
     char* token = strtok(pathCopy, "/");
@@ -28,12 +29,13 @@ void create_node_from_path(node* root, const char* type, const char* path) {
         if (!found) {
             node* newNode = malloc(sizeof(node));
             strcpy(newNode->value, token);
-            newNode->isFolder = 1; 
+            newNode->isFolder = 1;
             newNode->content = NULL;
             newNode->child = NULL;
             newNode->next = NULL;
             newNode->parent = current;
 
+            // Add to current's child list
             if (!current->child) {
                 current->child = newNode;
             } else {
@@ -43,6 +45,9 @@ void create_node_from_path(node* root, const char* type, const char* path) {
             }
 
             current = newNode;
+
+            // Add to hash table
+            hash_insert(table, newNode->value, newNode);
         }
 
         token = strtok(NULL, "/");
@@ -50,18 +55,21 @@ void create_node_from_path(node* root, const char* type, const char* path) {
 
     // Mark node as file if type is "FILE"
     current->isFolder = (strcmp(type, "FOLDER") == 0) ? 1 : 0;
+
+    // Also insert final node in the hash table
+    hash_insert(table, current->value, current);
 }
 
 // Load folder/file structure from system.txt
-void load_filesystem(node* root) {
+void load_filesystem(node* root, hash_table* table) {
     FILE* fp = fopen("./data/system.txt", "r");
-    if (!fp){
+    if (!fp) {
         return;
     }
 
     char type[10], path[256];
     while (fscanf(fp, "%s %[^\n]", type, path) == 2) {
-        create_node_from_path(root, type, path);
+        create_node_from_path(root, type, path, table);
     }
 
     fclose(fp);
@@ -93,7 +101,7 @@ node* loader_find_node_by_path(node* root, const char* path) {
 }
 
 // Load file content from content.txt into nodes
-void load_file_content(node* root) {
+void load_file_content(node* root, hash_table* table) {
     FILE* fp = fopen("./data/content.txt", "r");
     if (!fp) return;
 
@@ -127,7 +135,7 @@ void load_file_content(node* root) {
     fclose(fp);
 }
 
-void loader_main(node* root) {
-    load_filesystem(root);
-    load_file_content(root);
+void loader_main(node* root, hash_table* table) {
+    load_filesystem(root, table);
+    load_file_content(root, table);
 }

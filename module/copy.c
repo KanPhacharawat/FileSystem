@@ -13,15 +13,27 @@ node* copy_node(node* original) {
     strcpy(copy->value, original->value);
     copy->isFolder = original->isFolder;
     copy->parent = NULL;
-    copy->child = copy_node(original->child);
-    // Set parent
-    node* temp = copy->child;
-    while (temp != NULL) {
-        temp->parent = copy;
-        temp = temp->next;
+    copy->next = NULL;
+
+    if (!original->isFolder) {
+        if (original->content) {
+            copy->content = malloc(strlen(original->content) + 1);
+            strcpy(copy->content, original->content);
+        } else {
+            copy->content = malloc(1);
+            copy->content[0] = '\0';
+        }
+        copy->child = NULL;
+    } else {
+        copy->child = copy_node(original->child);
+        node* temp = copy->child;
+        while (temp != NULL) {
+            temp->parent = copy;
+            temp = temp->next;
+        }
+        copy->content = NULL;
     }
 
-    copy->next = NULL;
     return copy;
 }
 

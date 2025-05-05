@@ -1,5 +1,6 @@
 #include "struct.h"
 
-void save_file_content(node* current, FILE* content_file);
-void save_filesystem_structure(node* current, FILE* structure_file);
-void saver_main(node* root);
+void build_path(node* n, char* path);
+void save_structure(FILE* f, node* current);
+void save_content(FILE* f, node* current);
+void save_all(node* root);

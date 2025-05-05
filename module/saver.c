@@ -30,8 +30,56 @@ void saver_main(node* root) {
     while (temp != NULL) {
         save_file_content(temp, content_file);
         temp = temp->next;
+
+void build_path(node* n, char* path) {
+    if (n->parent == NULL || strcmp(n->parent->value, "Home") == 0) {
+        strcpy(path, n->value);
+        return;
+    }
+    char temp[1024];
+    build_path(n->parent, temp);
+    sprintf(path, "%s/%s", temp, n->value);
+}
+
+void save_structure(FILE* f, node* current) {
+    if (!current) return;
+
+    if (strcmp(current->value, "Home") != 0) {
+        char path[1024];
+        build_path(current, path);
+        fprintf(f, "%s %s\n", current->isFolder ? "FOLDER" : "FILE", path);
     }
 
-    fclose(structure_file);
-    fclose(content_file);
+    save_structure(f, current->child);
+    save_structure(f, current->next);
+}
+
+void save_content(FILE* f, node* current) {
+    if (!current) return;
+
+    if (!current->isFolder && current->content[0] != '\0') {
+        char path[1024];
+        build_path(current, path);
+        fprintf(f, ":::%s\n", path);
+        fprintf(f, "%s\n", current->content);
+        fprintf(f, "---END---\n\n");
+    }
+
+    save_content(f, current->child);
+    save_content(f, current->next);
+}
+
+void save_all(node* root) {
+    FILE* f_struct = fopen("./data/system.txt", "w");
+    FILE* f_content = fopen("./data/content.txt", "w");
+
+    if (!f_struct || !f_content) {
+        return;
+    }
+
+    save_structure(f_struct, root->child); 
+    save_content(f_content, root->child);
+
+    fclose(f_struct);
+    fclose(f_content);
 }

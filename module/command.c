@@ -53,6 +53,8 @@ int command_read(char* comm){
         return 12;
     }else if(strcmp(comm, "nano") == 0){
         return 13;
+    }else if(strcmp(comm, "search") == 0){
+        return 14;
     }
     return 0;
 }

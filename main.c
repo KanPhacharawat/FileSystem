@@ -10,6 +10,7 @@
 //initiate struct
 int main(void){
     node head;
+    hash_table* table = create_table();
     struct_init(&head);
     loader_main(&head);
     node* current = &head;
@@ -25,6 +26,6 @@ int main(void){
         else if(r == 4) create_folder(current);
         else if(r == 5) create_file(current);
     }
-    saver_main(&head);
+    save_all(&head);
     return 0;
 }

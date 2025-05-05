@@ -1,7 +1,6 @@
-FOLDER Home
 FOLDER C
-FOLDER projects
-FILE notes.txt
-FILE todo.txt
-FOLDER documents
-FILE resume.txt
+FOLDER C/projects
+FILE C/projects/notes.txt
+FILE C/projects/todo.txt
+FOLDER C/documents
+FILE C/documents/resume.txt
